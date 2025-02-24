@@ -1,4 +1,4 @@
-import Payments from 'payments/Payments';
+import Payments from "payments/Payments";
 
 const UserProfile = () => {
   return (

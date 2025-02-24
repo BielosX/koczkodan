@@ -10,6 +10,3 @@ dist/
 # IDE
 .vscode/*
 !.vscode/extensions.json
-.idea
-
-@mf-types
