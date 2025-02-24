@@ -22,6 +22,9 @@ export default defineConfig({
         },
         "react-dom": {
           singleton: true,
+        },
+        "ramda": {
+          singleton: true,
         }
       },
     }),
