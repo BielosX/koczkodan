@@ -4,6 +4,9 @@ import { pluginModuleFederation } from '@module-federation/rsbuild-plugin';
 import { pluginTypeCheck } from "@rsbuild/plugin-type-check";
 
 export default defineConfig({
+  output: {
+    assetPrefix: process.env.USER_PROFILE_CDN_URL,
+  },
   plugins: [
     pluginModuleFederation({
       name: "user_profile", // valid name with underscore, '-' not allowed

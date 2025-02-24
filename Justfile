@@ -10,6 +10,9 @@ deploy-payments:
     #!/bin/bash -xe
     rm -rf dist
     rm -rf node_modules
+    distr_id=$(aws ssm get-parameter --name mfs-cdn-id | jq -r '.Parameter.Value')
+    distr_url=$(aws cloudfront get-distribution --id "${distr_id}" | jq -r '.Distribution.DomainName')
+    export PAYMENTS_CDN_URL="https://${distr_url}/payments"
     npm install && npm run build
     account_id=$(aws sts get-caller-identity | jq -r '.Account')
     aws s3 cp --recursive dist "s3://deployment-${AWS_REGION}-${account_id}/payments"
@@ -22,6 +25,7 @@ deploy-user-profile: deploy-payments
     distr_id=$(aws ssm get-parameter --name mfs-cdn-id | jq -r '.Parameter.Value')
     distr_url=$(aws cloudfront get-distribution --id "${distr_id}" | jq -r '.Distribution.DomainName')
     export PAYMENTS_URL="https://${distr_url}/payments"
+    export USER_PROFILE_CDN_URL="https://${distr_url}/user-profile"
     npm install && npm run build
     account_id=$(aws sts get-caller-identity | jq -r '.Account')
     aws s3 cp --recursive dist "s3://deployment-${AWS_REGION}-${account_id}/user-profile"
