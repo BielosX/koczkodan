@@ -3,9 +3,11 @@ import { pluginReact } from '@rsbuild/plugin-react';
 import { pluginModuleFederation } from '@module-federation/rsbuild-plugin';
 import { pluginTypeCheck } from "@rsbuild/plugin-type-check";
 
+const cdn_url = process.env.CDN_URL;
+
 export default defineConfig({
   output: {
-    assetPrefix: process.env.PAYMENTS_CDN_URL,
+    assetPrefix: cdn_url ? `${cdn_url}/payments` : undefined,
   },
   plugins: [
     pluginModuleFederation({
