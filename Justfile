@@ -15,20 +15,12 @@ deploy-user-profile: deploy-payments
 
 [working-directory: 'payments']
 payments-local:
-    #!/bin/bash -xe
-    rm -rf dist
-    rm -rf @mf-types
-    rm -rf node_modules
-    npm install && npm run dev
+    ../scripts/run-clean-local.sh
 
 
 [working-directory: 'user-profile']
 user-profile-local:
-    #!/bin/bash -xe
-    rm -rf dist
-    rm -rf @mf-types
-    rm -rf node_modules
-    npm install && npm run dev
+    ../scripts/run-clean-local.sh
 
 deploy-mfs: deploy-payments deploy-user-profile
 
